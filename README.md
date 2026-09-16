@@ -1,6 +1,6 @@
 # Movie Ratings & Reviews App
 
-This is a simple movie ratings and reviews app built with HTML, CSS, and Node.js.
+This is a simple movie ratings and reviews app built with Express, EJS, and MongoDB.
 
 ## File Structure
 
@@ -15,44 +15,57 @@ project-root/
 │   ├── styles.css
 │   └── placeholder.jpg
 ├── node_modules/
+├── config/database.js
+├── models/
+│   ├── Movie.js
+│   └── Review.js
+├── seed.js
+├── test/
+│   ├── app.test.js
+│   └── models.test.js
 ├── app.js
+├── .env
 ├── package.json
 └── package-lock.json
 ```
 
-## How to Run the App
+## Setup
 
-1. **Clone the repository:**
-   ```sh
-   git clone git@github.com:Circuit-Stream-LMS/movie-ratings-app.git
-   cd project-root
-   ```
-
-2. **Install the dependencies:**
+1. **Install the dependencies:**
    ```sh
    npm install
    ```
 
-3. **Run the application:**
+2. **Configure MongoDB:**
+
+Set `MONGODB_URI` in `.env`:
+
+```env
+MONGODB_URI=mongodb://127.0.0.1:27017/movie-ratings-app
+```
+
+Use a MongoDB Atlas connection string instead if you are using Atlas.
+
+3. **Seed the sample movies and reviews:**
+
+```sh
+node seed.js
+```
+
+4. **Run the application:**
    ```sh
    node app.js
    ```
 
-4. **Open your web browser and go to:**
+5. **Open your web browser and go to:**
    ```
    http://localhost:3000
    ```
 
-## Next Steps: Fetch Movies from a Database
+## Tests
 
-Currently, the movies are hard-coded in the `app.js` file as shown below:
+Tests are included for model validation, MongoDB references, and route behavior. They are not run as part of setup. To run them manually:
 
-```javascript
-const movies = [
-    { id: 1, title: 'Movie Title 1', thumbnail: '/placeholder.jpg', rating: 4, description: "Description for Movie Title 1" },
-    { id: 2, title: 'Movie Title 2', thumbnail: '/placeholder.jpg', rating: 5, description: "Description for Movie Title 2" },
-    { id: 3, title: 'Movie Title 3', thumbnail: '/placeholder.jpg', rating: 3, description: "Description for Movie Title 3" }
-];
+```sh
+npm test
 ```
-
-Let's make some changes to persist these movies in MongoDB!
